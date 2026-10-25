@@ -1,0 +1,28 @@
+
+name: Build Bushehr Battle APK
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v4
+
+      - name: Build Android APK
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          targetPlatform: Android
+          buildMethod: CloudAndroidBuild.Build
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: BushehrBattle-Android
+          path: build/Android/
