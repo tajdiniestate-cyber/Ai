@@ -27,10 +27,11 @@ jobs:
           projectPath: .
           targetPlatform: Android
           buildMethod: CloudAndroidBuild.Build
+          versioning: None
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: BushehrBattle-APK
           path: build/Android/
-versioning: None
+
